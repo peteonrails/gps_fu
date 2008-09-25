@@ -5,6 +5,11 @@ supports translation of MyGPSId address_ids into geocoded data. Queries will ret
 Hpricot documents that you can use to find address elements in the return packet. 
 You can also pass those Hpricot documents to a Location object and use it instead. 
 
+Installing
+==========
+
+    script/plugin install git://github.com/peteonrails/gps_fu.git
+    
 Example
 =======
 To turn an address id of "pete@work" into a geo-approximate location packet, do the following: 
