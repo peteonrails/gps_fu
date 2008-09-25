@@ -1,0 +1,37 @@
+GpsFu
+=====
+This is a Location Based Services API for Ruby and for Ruby on Rails. It currently
+supports translation of MyGPSId address_ids into geocoded data. Queries will return 
+Hpricot documents that you can use to find address elements in the return packet. 
+You can also pass those Hpricot documents to a Location object and use it instead. 
+
+Example
+=======
+To turn an address id of "pete@work" into a geo-approximate location packet, do the following: 
+
+@hpricot_doc = GPSFu::MyGPSId::Client.id_to_geocode("pete@work", :api_key=>"mykey")
+
+# now you can find out approximately where I am: 
+puts (@hpricot_doc.xml/"address/city").inner_html # "Bethesda"
+puts (@hpricot_doc.xml/"address/country-code").inner_html # "US"
+
+Or, if you'd rather not parse the Hpricot document, you can use the included Location class:
+
+@loc = Location.new(GPSFu::MyGPSId::Client.id_to_geocode("pete@work", :api_key=>"mykey"))
+
+puts @loc.city
+puts @loc.country_code
+puts @loc.lat # latitude
+puts @loc.lng # longitude
+puts @loc.postal_code
+puts @loc.postal_district
+puts @loc.state
+
+Consideration
+=============
+If you like this software and use it, please consider recommending me on Working With Rails. 
+I don't want donations: a simple up-vote would make my day. My profile is: http://www.workingwithrails.com/person/12521-peter-jackson
+To go directly to the "Recommend Me" screen: http://www.workingwithrails.com/recommendation/new/person/12521-peter-jackson
+
+Copyright (c) 2008 Peter Jackson, released under the MIT license
+
